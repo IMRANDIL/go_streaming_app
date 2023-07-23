@@ -118,7 +118,7 @@ func uploadVideoHandler(w http.ResponseWriter, r *http.Request) {
 
 func getAllVideosMetadataHandler(w http.ResponseWriter, r *http.Request) {
 	// Get a list of all video files in the videos directory
-	videoDir := "/home/imrandil/Desktop/go_streaming_app/videos"
+	videoDir := "./videos"
 	files, err := os.ReadDir(videoDir)
 	if err != nil {
 		http.Error(w, "Error reading video directory", http.StatusInternalServerError)
@@ -214,7 +214,7 @@ func main() {
 	r.HandleFunc("/videos/{filename}", streamVideoHandler).Methods("GET") // New route for video streaming
 
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:5173"},
+		AllowedOrigins: []string{"http://localhost:3000"},
 		AllowedMethods: []string{"GET", "POST", "OPTIONS"},
 		AllowedHeaders: []string{"*"},
 	})
